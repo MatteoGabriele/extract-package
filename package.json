@@ -4,9 +4,9 @@
   "version": "1.0.0",
   "description": "Download and extract npm package version",
   "bugs": {
-    "url": ""
+    "url": "https://github.com/MatteoGabriele/extract-package/issues"
   },
-  "repository": "",
+  "repository": "MatteoGabriele/extract-package",
   "main": "./index.js",
   "license": "MIT",
   "files": [
