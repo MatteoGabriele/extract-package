@@ -1,0 +1,30 @@
+{
+  "name": "extract-package",
+  "author": "Matteo Gabriele <m.gabriele.dev@gmail.com>",
+  "version": "1.0.0",
+  "description": "Download and extract npm package version",
+  "bugs": {
+    "url": ""
+  },
+  "repository": "",
+  "main": "./index.js",
+  "license": "MIT",
+  "files": [
+    "index.js"
+  ],
+  "devDependencies": {
+    "babel-core": "^6.24.1",
+    "babel-loader": "^7.0.0",
+    "babel-preset-blue": "^1.0.0-beta.29",
+    "compression-webpack-plugin": "^0.4.0",
+    "friendly-errors-webpack-plugin": "^1.6.1",
+    "ora": "^1.2.0",
+    "webpack": "^2.5.0",
+    "webpack-merge": "^4.1.0"
+  },
+  "dependencies": {
+    "node-fetch": "^1.6.3",
+    "tar.gz": "^1.0.5",
+    "temp-dir": "^1.0.0"
+  }
+}
