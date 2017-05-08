@@ -21,8 +21,8 @@ extractPackage({
   name: 'extract-package',
   version: '1.0.0',
   dest: '/path/to/folder'
-}).then(downloadedPackage => {
-  console.log(downloadedPackage)
+}).then(response => {
+  // package extracted
 }).catch(error => {
   // some error
 })
