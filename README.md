@@ -1,3 +1,5 @@
+[![npm version](https://badge.fury.io/js/extract-package.svg)](https://badge.fury.io/js/extract-package) 
+
 # extract-package
 
 Download and extract npm package version
@@ -24,6 +26,6 @@ extractPackage({
 }).then(response => {
   // package extracted
 }).catch(error => {
-  // some error
+  // oops!
 })
 ```
