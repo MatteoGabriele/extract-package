@@ -2,6 +2,7 @@ const fetch = require('node-fetch')
 const targz = require('tar.gz')
 const fs = require('fs')
 const tempDir = require('temp-dir')
+const semver = require('semver')
 
 var currentNodeVersion = process.versions.node
 if (currentNodeVersion.split('.')[0] < 6) {
@@ -30,14 +31,14 @@ function whenStreamDone (stream) {
 
 /**
  * Extracts node package tarball based on semver version string
- * @param  {String} name    package name
- * @param  {String} version semver string
- * @param  {String} dest    package destination folder
- * @return {Object}         downloaded package
+ * @param  {String} name      package name
+ * @param  {String} version   semver string
+ * @param  {String} dest      package destination folder
+ * @param  {Boolean} satisfy  satisfy major version
+ * @return {Object}           downloaded package
  */
-module.exports = function extractPackage ({ name, version, dest }) {
+module.exports = function extractPackage ({ name, version, dest }, satisfyMajor = false) {
   const tarFilePath = `${tempDir}/${name}.tar.gz`
-  let packageVersion
 
   if (!fs.existsSync(dest)) {
     console.error(`Directory ${dest} doesn't exist`)
@@ -50,14 +51,19 @@ module.exports = function extractPackage ({ name, version, dest }) {
   .then(info => {
     const versions = Object.keys(info.versions)
 
-    packageVersion = info.versions[version]
+    let selectedVersion = satisfyMajor ? semver.maxSatisfying(versions, `^${version}.0.0`) : version
 
-    if (!packageVersion) {
-      console.error(`Version ${version} doesn't exist for this package.`)
+    if (satisfyMajor && !selectedVersion) {
+      console.log(`${version} doesn\'t satisfy any major versions of ${name}`)
       process.exit(1)
     }
 
-    return packageVersion.dist.tarball
+    if (!selectedVersion) {
+      console.error(`Version ${version} doesn't exist for ${name}.`)
+      process.exit(1)
+    }
+
+    return info.versions[selectedVersion].dist.tarball
   })
   .then(url => {
     return fetch(url).then(response => {
@@ -65,9 +71,10 @@ module.exports = function extractPackage ({ name, version, dest }) {
       response.body.pipe(file)
 
       return whenStreamDone(response.body).then(() => {
-        return targz().extract(tarFilePath, dest)
+        return targz().extract(tarFilePath, dest).then(() => {
+          return `${dest}/package`
+        })
       })
     })
   })
-  .then(() => packageVersion)
 }
