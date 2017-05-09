@@ -32,7 +32,7 @@ extractPackage({
 
 ### Satisfy major versions
 
-Assuming that the package version are 1.4.5 1.6.5 and 2.0.0, this example will download the version 1.6.5, which is the latest version that satisfies that major version.
+Assuming that the package version are 1.4.5, 1.6.5 and 2.0.0, this example will download the version 1.6.5, which is the latest version that satisfies that major version.
 
 ```js
 extractPackage({
