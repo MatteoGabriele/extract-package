@@ -23,7 +23,8 @@ const extractPackage = require('extract-package')
 extractPackage({
   name: 'lodash'
 }).then(response => {
-  // folder location
+  // path where package is downloaded
+  console.log(response)
 }).catch(error => {
   // oops!
 })
