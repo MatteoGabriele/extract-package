@@ -16,6 +16,36 @@ $ npm install extract-package
 
 ## Usage
 
+
+```js
+const extractPackage = require('extract-package')
+
+extractPackage({
+  name: 'extract-package'
+}).then(response => {
+  // package extracted
+}).catch(error => {
+  // oops!
+})
+```
+
+### Specify a version
+
+```js
+const extractPackage = require('extract-package')
+
+extractPackage({
+  name: 'extract-package',
+  version: '1.0.0'
+}).then(response => {
+  // package extracted
+}).catch(error => {
+  // oops!
+})
+```
+
+### Specify where to drop the package
+
 ```js
 const extractPackage = require('extract-package')
 
@@ -37,8 +67,7 @@ Assuming that the package version are 1.4.5, 1.6.5 and 2.0.0, this example will 
 ```js
 extractPackage({
   name: 'extract-package',
-  version: '1',
-  dest: '/path/to/folder'
+  version: '1'
 }, true).then(response => {
   // package extracted
 }).catch(error => {
