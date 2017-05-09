@@ -33,17 +33,12 @@ function whenStreamDone (stream) {
  * [extractPackage description]
  * @param  {String}  name                 package name
  * @param  {String}  version              semver string
- * @param  {String}  dest                 package destination folder
+ * @param  {String}  [dest=tempDir]       package destination folder
  * @param  {Boolean} [satisfyMajor=false] satisfy major version
  * @return {String}                       package folder destination
  */
-module.exports = function extractPackage ({ name, version, dest }, satisfyMajor = false) {
+module.exports = function extractPackage ({ name, version, dest = tempDir, tag = 'latest' }, satisfyMajor = false) {
   const tarFilePath = `${tempDir}/${name}.tar.gz`
-
-  if (!fs.existsSync(dest)) {
-    console.error(`Directory ${dest} doesn't exist`)
-    process.exit(1)
-  }
 
   return fetch(`http://registry.npmjs.org/${name}`).then(response => {
     return response.json()
@@ -52,6 +47,10 @@ module.exports = function extractPackage ({ name, version, dest }, satisfyMajor 
     const versions = Object.keys(info.versions)
 
     let selectedVersion = satisfyMajor ? semver.maxSatisfying(versions, `^${version}.0.0`) : version
+
+    if (!version) {
+      selectedVersion = info['dist-tags'][tag]
+    }
 
     if (satisfyMajor && !selectedVersion) {
       console.log(`${version} doesn\'t satisfy any major versions of ${name}`)
