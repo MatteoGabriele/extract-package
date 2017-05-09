@@ -21,7 +21,7 @@ $ npm install extract-package
 const extractPackage = require('extract-package')
 
 extractPackage({
-  name: 'extract-package'
+  name: 'lodash'
 }).then(response => {
   // folder location
 }).catch(error => {
@@ -32,10 +32,8 @@ extractPackage({
 ### Specify a version
 
 ```js
-const extractPackage = require('extract-package')
-
 extractPackage({
-  name: 'extract-package',
+  name: 'lodash',
   version: '1.0.0'
 })
 ```
@@ -43,10 +41,8 @@ extractPackage({
 ### Specify where to drop the package
 
 ```js
-const extractPackage = require('extract-package')
-
 extractPackage({
-  name: 'extract-package',
+  name: 'lodash',
   version: '1.0.0',
   dest: '/path/to/folder'
 })
@@ -58,7 +54,7 @@ Assuming that the package version are 1.4.5, 1.6.5 and 2.0.0, this example will 
 
 ```js
 extractPackage({
-  name: 'extract-package',
+  name: 'lodash',
   version: '1'
 }, true)
 ```
