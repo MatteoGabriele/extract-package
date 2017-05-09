@@ -23,7 +23,7 @@ const extractPackage = require('extract-package')
 extractPackage({
   name: 'extract-package'
 }).then(response => {
-  // package extracted
+  // folder location
 }).catch(error => {
   // oops!
 })
@@ -38,7 +38,7 @@ extractPackage({
   name: 'extract-package',
   version: '1.0.0'
 }).then(response => {
-  // package extracted
+  // folder location
 }).catch(error => {
   // oops!
 })
@@ -54,7 +54,7 @@ extractPackage({
   version: '1.0.0',
   dest: '/path/to/folder'
 }).then(response => {
-  // package extracted
+  // folder location
 }).catch(error => {
   // oops!
 })
@@ -69,7 +69,7 @@ extractPackage({
   name: 'extract-package',
   version: '1'
 }, true).then(response => {
-  // package extracted
+  // folder location
 }).catch(error => {
   // oops!
 })
