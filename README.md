@@ -37,10 +37,6 @@ const extractPackage = require('extract-package')
 extractPackage({
   name: 'extract-package',
   version: '1.0.0'
-}).then(response => {
-  // folder location
-}).catch(error => {
-  // oops!
 })
 ```
 
@@ -53,10 +49,6 @@ extractPackage({
   name: 'extract-package',
   version: '1.0.0',
   dest: '/path/to/folder'
-}).then(response => {
-  // folder location
-}).catch(error => {
-  // oops!
 })
 ```
 
@@ -68,9 +60,5 @@ Assuming that the package version are 1.4.5, 1.6.5 and 2.0.0, this example will 
 extractPackage({
   name: 'extract-package',
   version: '1'
-}, true).then(response => {
-  // folder location
-}).catch(error => {
-  // oops!
-})
+}, true)
 ```
