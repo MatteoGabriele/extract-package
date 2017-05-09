@@ -13,7 +13,7 @@ if (currentNodeVersion.split('.')[0] < 6) {
       'Create NPM package requires Node 6 or higher. \n' +
       'Please update your version of Node.'
   )
-  process.exit(1);
+  process.exit(1)
 }
 
 /**
