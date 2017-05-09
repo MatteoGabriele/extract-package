@@ -1,6 +1,6 @@
+const fs = require('fs')
 const fetch = require('node-fetch')
 const targz = require('tar.gz')
-const fs = require('fs')
 const tempDir = require('temp-dir')
 const semver = require('semver')
 
@@ -30,12 +30,12 @@ function whenStreamDone (stream) {
 }
 
 /**
- * Extracts node package tarball based on semver version string
- * @param  {String} name      package name
- * @param  {String} version   semver string
- * @param  {String} dest      package destination folder
- * @param  {Boolean} satisfy  satisfy major version
- * @return {Object}           downloaded package
+ * [extractPackage description]
+ * @param  {String}  name                 package name
+ * @param  {String}  version              semver string
+ * @param  {String}  dest                 package destination folder
+ * @param  {Boolean} [satisfyMajor=false] satisfy major version
+ * @return {String}                       package folder destination
  */
 module.exports = function extractPackage ({ name, version, dest }, satisfyMajor = false) {
   const tarFilePath = `${tempDir}/${name}.tar.gz`
