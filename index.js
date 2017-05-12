@@ -3,6 +3,7 @@ const fetch = require('node-fetch')
 const targz = require('tar.gz')
 const tempDir = require('temp-dir')
 const semver = require('semver')
+const del = require('del')
 
 var currentNodeVersion = process.versions.node
 if (currentNodeVersion.split('.')[0] < 6) {
@@ -39,9 +40,12 @@ function whenStreamDone (stream) {
  */
 module.exports = function extractPackage ({ name, version, dest = tempDir, tag = 'latest' }, satisfyMajor = false) {
   const tarFilePath = `${tempDir}/${name}.tar.gz`
+  const extractedPackagePath = `${dest}/package`
 
-  return fetch(`http://registry.npmjs.org/${name}`).then(response => {
-    return response.json()
+  return del(extractedPackagePath, { force: true }).then(() => {
+    return fetch(`http://registry.npmjs.org/${name}`).then(response => {
+      return response.json()
+    })
   })
   .then(info => {
     const versions = Object.keys(info.versions)
@@ -71,7 +75,7 @@ module.exports = function extractPackage ({ name, version, dest = tempDir, tag =
 
       return whenStreamDone(response.body).then(() => {
         return targz().extract(tarFilePath, dest).then(() => {
-          return `${dest}/package`
+          return extractedPackagePath
         })
       })
     })

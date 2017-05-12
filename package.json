@@ -23,6 +23,7 @@
     "webpack-merge": "^4.1.0"
   },
   "dependencies": {
+    "del": "^2.2.2",
     "node-fetch": "^1.6.3",
     "semver": "^5.3.0",
     "tar.gz": "^1.0.5",
