@@ -57,13 +57,11 @@ module.exports = function extractPackage ({ name, version, dest = tempDir, tag =
     }
 
     if (satisfyMajor && !selectedVersion) {
-      console.log(`${version} doesn\'t satisfy any major versions of ${name}`)
-      process.exit(1)
+      throw new Error(`${version} doesn\'t satisfy any major versions of ${name}`)
     }
 
     if (!selectedVersion) {
-      console.error(`Version ${version} doesn't exist for ${name}.`)
-      process.exit(1)
+      throw new Error(`Version ${version} doesn't exist for ${name}.`)
     }
 
     return info.versions[selectedVersion].dist.tarball
