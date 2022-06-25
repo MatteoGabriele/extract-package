@@ -24,7 +24,7 @@
   },
   "dependencies": {
     "del": "^2.2.2",
-    "node-fetch": "^1.6.3",
+    "node-fetch": "^2.6.7",
     "semver": "^5.3.0",
     "tar.gz": "^1.0.5",
     "temp-dir": "^1.0.0"
